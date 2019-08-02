@@ -13,7 +13,7 @@ type Props = {
   navigation: NavigationScreenProp<any>,
 };
 
-export function DetailsScreen(props: Props): React$Node {
+export default function DetailsScreen(props: Props): React$Node {
   const pokemon = props.navigation.getParam('item', undefined);
 
   return (

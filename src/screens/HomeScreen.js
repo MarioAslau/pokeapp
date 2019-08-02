@@ -6,8 +6,9 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
-import Button from '../components/Button/Button';
+// import Button from '../components/Button/Button';
 import type { NavigationScreenProp } from 'react-navigation';
+import PokeList from '../components/PokeList/PokeList';
 
 type Props = {
   navigation: NavigationScreenProp<any>,
@@ -33,10 +34,7 @@ const PokemonsQuery = gql`
   }
 `;
 
-// $FlowFixMe
-const keyExtractor = (item, index): string => item.number;
-
-export function HomeScreen(props: Props): React$Node {
+export default function HomeScreen(props: Props): React$Node {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Hello this is the home screen</Text>
@@ -58,16 +56,7 @@ export function HomeScreen(props: Props): React$Node {
           const randomPokemon =
             pokemons[Math.floor(Math.random() * pokemons.length)];
 
-          return (
-            <FlatList
-              data={data.pokemons}
-              renderItem={({ item }) => (
-                <Button item={item} navigation={props.navigation} />
-              )}
-              keyExtractor={keyExtractor}
-              style={styles.flex1}
-            />
-          );
+          return <PokeList pokemons={pokemons} navigation={props.navigation} />;
         }}
       </Query>
     </View>
