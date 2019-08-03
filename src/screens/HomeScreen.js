@@ -9,6 +9,7 @@ import { gql } from 'apollo-boost';
 // import Button from '../components/Button/Button';
 import type { NavigationScreenProp } from 'react-navigation';
 import PokeList from '../components/PokeList/PokeList';
+import theme from '../theme/theme';
 
 type Props = {
   navigation: NavigationScreenProp<any>,
@@ -62,6 +63,16 @@ export default function HomeScreen(props: Props): React$Node {
     </View>
   );
 }
+
+HomeScreen.navigationOptions = {
+  headerStyle: {
+    backgroundColor: theme.baseColors.frames,
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    color: '#fff',
+  },
+};
 
 const styles = StyleSheet.create({
   container: {

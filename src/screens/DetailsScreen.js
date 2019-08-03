@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { pokemonTypes } from '../theme/theme';
+import theme from '../theme/theme';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import type { NavigationScreenProp } from 'react-navigation';
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     top: 60,
     right: 20,
     // backgroundColor: 'rgba(5,5,5,0.5)',
-    backgroundColor: pokemonTypes.water,
+    backgroundColor: theme.pokemonTypes.water,
     padding: 5,
     borderRadius: 5,
   },
