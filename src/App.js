@@ -2,37 +2,30 @@
  * @flow
  */
 
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import React from 'react';
 import codePush from 'react-native-code-push';
+import { StyleSheet, View } from 'react-native';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import theme from './theme/theme';
+
 // $FlowFixMe - flow is drunk again
 import { useScreens } from 'react-native-screens';
-
-import { HomeScreen } from './HomeScreen';
-import { DetailsScreen } from './DetailsScreen';
+import AppNavigator from './navigators/AppNavigator';
 
 useScreens();
 
-const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-        title: 'Home',
-      },
-    },
-    Details: {
-      screen: DetailsScreen,
-      navigationOptions: {
-        title: 'Details',
-      },
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  },
-);
+const client = new ApolloClient({
+  uri: 'https://graphql-pokemon.now.sh',
+});
 
-const AppContainer = createAppContainer(RootStack);
+const AppContainer = () => (
+  <ApolloProvider client={client}>
+    <View style={styles.container}>
+      <AppNavigator />
+    </View>
+  </ApolloProvider>
+);
 
 const codePushOptions = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -41,3 +34,10 @@ const codePushOptions = {
 };
 
 export const App = codePush(codePushOptions)(AppContainer);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.baseColors.frames,
+  },
+});
