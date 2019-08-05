@@ -22,6 +22,14 @@ type Pokemon = {
   classification: string,
   image: string,
   types: [string],
+  weight: {
+    maximum: string,
+  },
+  height: {
+    maximum: string,
+  },
+  maxHP: number,
+  maxCP: number,
 };
 
 const PokemonsQuery = gql`
@@ -32,6 +40,18 @@ const PokemonsQuery = gql`
       classification
       image
       types
+      weight {
+        maximum
+      }
+      height {
+        maximum
+      }
+      maxHP
+      maxCP
+      evolutions {
+        name
+        image
+      }
     }
   }
 `;
@@ -39,7 +59,7 @@ const PokemonsQuery = gql`
 export default function HomeScreen(props: Props): React$Node {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Hello this is the home screen</Text>
+      <Text style={styles.welcome}>POKEMON OF THE DAY</Text>
 
       <Query query={PokemonsQuery} style={styles.flex1}>
         {({
@@ -53,12 +73,15 @@ export default function HomeScreen(props: Props): React$Node {
         }): React$Node => {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error :(</Text>;
-
           const pokemons = data.pokemons;
           const randomPokemon =
             pokemons[Math.floor(Math.random() * pokemons.length)];
-          return <PokeCard pokemon={randomPokemon}/>
-
+          console.log('Pokemons:', randomPokemon);
+          return (
+            <View>
+              <PokeCard pokemon={randomPokemon} />
+            </View>
+          );
           // <PokeList pokemons={pokemons} navigation={props.navigation} />;
         }}
       </Query>
@@ -79,11 +102,18 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.baseColors.background,
+    paddingLeft: theme.padding.base,
+    paddingRight: theme.padding.base,
+    paddingBottom: theme.padding.base,
+    paddingTop: 50,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    fontWeight: '800',
+    color: theme.baseColors.white,
   },
   flex1: {
     flex: 1,

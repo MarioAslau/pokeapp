@@ -3,29 +3,39 @@
  */
 
 import React from 'react';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createStackNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import theme from '../theme/theme';
 
-const RootStack = createStackNavigator(
+const RootStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        title: 'Pokedex',
+        tabBarLabel: 'Pokemon',
       },
     },
-    Details: {
-      screen: DetailsScreen,
-      navigationOptions: {
-        title: 'Details',
-      },
-    },
+    // Details: {
+    //   screen: DetailsScreen,
+    //   navigationOptions: {
+    //     tabBarLabel: 'Details',
+    //   },
+    // },
   },
   {
-    initialRouteName: 'Home',
-    barStyle: {
-      backgroundColor: '#135589',
+    tabBarOptions: {
+      // activeBackgroundColor: theme.baseColors.frames,
+      // inactiveBackgroundColor: theme.baseColors.frames,
+      activeTintColor: theme.baseColors.white,
+      inactiveTintColor: 'red',
+      style: {
+        backgroundColor: theme.baseColors.frames,
+      },
     },
   },
 );

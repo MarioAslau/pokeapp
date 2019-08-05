@@ -5,6 +5,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Button from '../Button/Button';
+import theme from '../../theme/theme';
 import type { NavigationScreenProp } from 'react-navigation';
 
 type Pokemon = {
@@ -13,6 +14,14 @@ type Pokemon = {
   classification: string,
   image: string,
   types: [string],
+  weight: {
+    maximum: string,
+  },
+  height: {
+    maximum: string,
+  },
+  maxHP: number,
+  maxCP: number,
 };
 
 type Props = {

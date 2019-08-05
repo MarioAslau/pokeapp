@@ -5,7 +5,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import theme from '../theme/theme';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import type { NavigationScreenProp } from 'react-navigation';
 
