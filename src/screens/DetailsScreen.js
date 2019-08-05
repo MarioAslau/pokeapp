@@ -41,6 +41,16 @@ export default function DetailsScreen(props: Props): React$Node {
   );
 }
 
+DetailsScreen.navigationOptions = {
+  headerStyle: {
+    backgroundColor: theme.baseColors.frames,
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    color: '#fff',
+  },
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

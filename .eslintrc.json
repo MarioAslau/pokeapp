@@ -3,10 +3,10 @@
     "plugin:flowtype/recommended",
     "plugin:react-native-a11y/recommended",
     "plugin:react/recommended",
-    "prettier",
-    "prettier/flowtype",
-    "prettier/react",
-    "prettier/standard",
+    // "prettier",
+    // "prettier/flowtype",
+    // "prettier/react",
+    // "prettier/standard",
     "standard"
   ],
   "plugins": [
@@ -37,14 +37,14 @@
     "no-extra-semi": 0,
     "semi": 0,
     "space-before-function-paren": 0,
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "parser": "flow",
-        "trailingComma": "all"
-      }
-    ],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "singleQuote": true,
+    //     "parser": "flow",
+    //     "trailingComma": "all"
+    //   }
+    // ],
     "import/no-duplicates": 2,
     "import/imports-first": 2,
     "import/newline-after-import": 0,

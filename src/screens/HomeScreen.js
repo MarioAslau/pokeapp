@@ -9,6 +9,7 @@ import { gql } from 'apollo-boost';
 // import Button from '../components/Button/Button';
 import type { NavigationScreenProp } from 'react-navigation';
 import PokeList from '../components/PokeList/PokeList';
+import PokeCard from '../components/PokeCard/PokeCard';
 import theme from '../theme/theme';
 
 type Props = {
@@ -56,8 +57,9 @@ export default function HomeScreen(props: Props): React$Node {
           const pokemons = data.pokemons;
           const randomPokemon =
             pokemons[Math.floor(Math.random() * pokemons.length)];
+          return <PokeCard pokemon={randomPokemon}/>
 
-          return <PokeList pokemons={pokemons} navigation={props.navigation} />;
+          // <PokeList pokemons={pokemons} navigation={props.navigation} />;
         }}
       </Query>
     </View>
