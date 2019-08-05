@@ -7,7 +7,9 @@ import codePush from 'react-native-code-push';
 import { StyleSheet, View } from 'react-native';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { Provider } from 'react-redux';
 import theme from './theme/theme';
+import configureStore from './redux/store/configureStore';
 
 // $FlowFixMe - flow is drunk again
 import { useScreens } from 'react-native-screens';
@@ -19,11 +21,15 @@ const client = new ApolloClient({
   uri: 'https://graphql-pokemon.now.sh',
 });
 
+const store = configureStore();
+
 const AppContainer = () => (
   <ApolloProvider client={client}>
-    <View style={styles.container}>
-      <AppNavigator />
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <AppNavigator />
+      </View>
+    </Provider>
   </ApolloProvider>
 );
 

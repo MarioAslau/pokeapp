@@ -12,12 +12,13 @@ import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import theme from '../theme/theme';
 
-const RootStack = createBottomTabNavigator(
+const RootStack = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
       navigationOptions: {
         tabBarLabel: 'Pokemon',
+        title: 'Pokemon',
       },
     },
     // Details: {

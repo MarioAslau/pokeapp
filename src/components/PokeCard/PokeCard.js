@@ -39,7 +39,7 @@ export default function PokeCard(props: Props): React$Node {
             uri: pokemon.image,
           }}
         />
-        <Text style={styles.data}>{pokemon.name.toUpperCase()}</Text>
+        <Text style={styles.cardData}>{pokemon.name.toUpperCase()}</Text>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             accessibilityLabel="Open/Close PokeCard"
@@ -88,6 +88,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   image: { width: '100%', height: 200 },
+  cardData: {
+    fontSize: 18,
+    color: theme.baseColors.black,
+    fontWeight: '600',
+    paddingTop: 10,
+  },
   data: {
     fontSize: 18,
     color: theme.baseColors.white,

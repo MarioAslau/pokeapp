@@ -2,18 +2,21 @@
  * @flow
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 // import Button from '../components/Button/Button';
 import type { NavigationScreenProp } from 'react-navigation';
+import { connect } from 'react-redux';
 import PokeList from '../components/PokeList/PokeList';
 import PokeCard from '../components/PokeCard/PokeCard';
 import theme from '../theme/theme';
+import { addPokemon } from '../redux/actions/pokemon';
 
 type Props = {
   navigation: NavigationScreenProp<any>,
+  pokemon: any,
 };
 
 type Pokemon = {
@@ -56,7 +59,7 @@ const PokemonsQuery = gql`
   }
 `;
 
-export default function HomeScreen(props: Props): React$Node {
+function HomeScreen(props: Props): React$Node {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>POKEMON OF THE DAY</Text>
@@ -73,9 +76,17 @@ export default function HomeScreen(props: Props): React$Node {
         }): React$Node => {
           if (loading) return <Text>Loading...</Text>;
           if (error) return <Text>Error :(</Text>;
+
           const pokemons = data.pokemons;
           const randomPokemon =
             pokemons[Math.floor(Math.random() * pokemons.length)];
+
+          if (pokemons.length > 0) {
+            addPokemon(pokemons);
+          }
+
+          console.log(props.pokemon);
+
           console.log('Pokemons:', randomPokemon);
           return (
             <View>
@@ -119,3 +130,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const mapDispatchToProps = dispatch => ({
+  addPokemon: () => dispatch(addPokemon()),
+});
+
+const mapStateToProps = state => ({
+  pokemon: state.pokemon,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);
