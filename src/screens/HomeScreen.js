@@ -85,9 +85,6 @@ function HomeScreen(props: Props): React$Node {
             addPokemon(pokemons);
           }
 
-          console.log(props.pokemon);
-
-          console.log('Pokemons:', randomPokemon);
           return (
             <View>
               <PokeCard pokemon={randomPokemon} />

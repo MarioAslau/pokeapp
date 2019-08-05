@@ -9,11 +9,12 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
 import theme from './theme/theme';
-import configureStore from './redux/store/configureStore';
+import { store, persistor } from './redux/store/configureStore';
 
 // $FlowFixMe - flow is drunk again
 import { useScreens } from 'react-native-screens';
 import AppNavigator from './navigators/AppNavigator';
+import { PersistGate } from 'redux-persist/integration/react';
 
 useScreens();
 
@@ -21,14 +22,14 @@ const client = new ApolloClient({
   uri: 'https://graphql-pokemon.now.sh',
 });
 
-const store = configureStore();
-
 const AppContainer = () => (
   <ApolloProvider client={client}>
     <Provider store={store}>
-      <View style={styles.container}>
-        <AppNavigator />
-      </View>
+      <PersistGate persistor={persistor} loading={null}>
+        <View style={styles.container}>
+          <AppNavigator />
+        </View>
+      </PersistGate>
     </Provider>
   </ApolloProvider>
 );
