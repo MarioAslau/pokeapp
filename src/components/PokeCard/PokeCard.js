@@ -45,7 +45,6 @@ export default function PokeCard(props: Props): React$Node {
             accessibilityLabel="Open/Close PokeCard"
             accessibilityComponentType="button"
             accessibilityTraits="button"
-            activeOpacity={0.8}
             onPress={() => setButtonState(!buttonState)}
             style={styles.cardButton}
           >

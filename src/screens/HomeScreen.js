@@ -86,9 +86,9 @@ function HomeScreen(props: Props): React$Node {
           }
 
           return (
-            <View>
+            <>
               <PokeCard pokemon={randomPokemon} />
-            </View>
+            </>
           );
           // <PokeList pokemons={pokemons} navigation={props.navigation} />;
         }}
