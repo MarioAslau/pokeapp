@@ -32,7 +32,7 @@ const AppContainer = () => (
     </Provider>
   </ApolloProvider>
 );
-
+//this is marios branch
 const codePushOptions = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
   installMode: codePush.InstallMode.ON_NEXT_RESUME,
