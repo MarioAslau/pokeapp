@@ -26,11 +26,11 @@ type Props = {
   pokemon: Pokemon,
 };
 
-export default function PokeCard(props: Props): React$Node {
+export default function PokeGame(props: Props): React$Node {
   const [buttonState, setButtonState] = useState(false);
   const { pokemon } = props;
   return (
-    <>
+    <View>
       <View style={styles.container}>
         <Image
           style={styles.image}
@@ -65,7 +65,7 @@ export default function PokeCard(props: Props): React$Node {
           <Text style={styles.data}>HEIGHT: {pokemon.height.maximum}</Text>
         </View>
       ) : null}
-    </>
+    </View>
   );
 }
 

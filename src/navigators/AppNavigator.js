@@ -10,6 +10,7 @@ import {
 } from 'react-navigation';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import SearchScreen from '../screens/SearchScreen'
 import theme from '../theme/theme';
 
 const RootStack = createBottomTabNavigator(
@@ -17,14 +18,14 @@ const RootStack = createBottomTabNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        tabBarLabel: 'Pokemon',
-        title: 'Pokemon',
+        tabBarLabel: 'Guess',
+        title: 'Guess',
       },
     },
     Details: {
-      screen: DetailsScreen,
+      screen: SearchScreen,
       navigationOptions: {
-        tabBarLabel: 'Details',
+        tabBarLabel: 'Pokemon',
       },
     },
   },

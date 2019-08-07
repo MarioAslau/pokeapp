@@ -13,7 +13,6 @@ import PokeList from '../components/PokeList/PokeList';
 import PokeCard from '../components/PokeCard/PokeCard';
 import theme from '../theme/theme';
 import { addPokemon } from '../redux/actions/pokemon';
-
 type Props = {
   navigation: NavigationScreenProp<any>,
   pokemon: any,
@@ -80,16 +79,25 @@ function HomeScreen(props: Props): React$Node {
           const pokemons = data.pokemons;
           const randomPokemon =
             pokemons[Math.floor(Math.random() * pokemons.length)];
+          const randomPokemon2 =
+            pokemons[Math.floor(Math.random() * (pokemons.length - 1))];
+          const randomPokemon3 =
+            pokemons[Math.floor(Math.random() * (pokemons.length - 2))];
+
+          console.log(
+            'Pokemon1:',
+            randomPokemon.name,
+            'Pokemon2:',
+            randomPokemon2.name,
+            'Pokemon3:',
+            randomPokemon3.name,
+          );
 
           if (pokemons.length > 0) {
             addPokemon(pokemons);
           }
 
-          return (
-            <>
-              <PokeCard pokemon={randomPokemon} />
-            </>
-          );
+          return <PokeCard pokemon={randomPokemon} />;
           // <PokeList pokemons={pokemons} navigation={props.navigation} />;
         }}
       </Query>
