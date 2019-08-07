@@ -27,13 +27,12 @@ type Props = {
 export function PokeCard(props: Props): React$Node {
   const { navigation, pokemon, index } = props;
 
-  if(pokemon.name === ''){
-    return <View style={{    width: '100%', padding: 10,
-flex: 1}} />
+  if (pokemon.name === '') {
+    return <View style={{ width: '100%', padding: 10, flex: 1 }} />
   }
 
   return (
-    <View style={ [styles.container,index % 2 === 0 ? styles.containerEven : styles.containerUnEven] }>
+    <View style={ [styles.container, index % 2 === 0 ? styles.containerEven : styles.containerUnEven] }>
       <TouchableOpacity
         accessibilityLabel="Go to pokemon details"
         accessibilityComponentType="button"
@@ -44,7 +43,7 @@ flex: 1}} />
         <Text style={styles.title}>{pokemon.name}</Text>
         <View style={styles.typeContainer}>
           {
-            pokemon.types.map(type => <Text style={styles.type}>{type}</Text>)
+            pokemon.types.map(type => <Text style={styles.type} key={type}>{type}</Text>)
           }
         </View>
       </TouchableOpacity>
@@ -80,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '800',
     letterSpacing: 2,
+    marginBottom: 10,
   },
   typeContainer: {
     display: 'flex',
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
   type: {
     backgroundColor: '#ebedf0',
     display: 'flex',
+    marginBottom: 10,
     padding: 5,
     paddingRight: 15,
     paddingLeft: 15,

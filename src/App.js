@@ -13,10 +13,11 @@ import { useScreens } from 'react-native-screens';
 
 import { HomeScreen } from './screens/HomeScreen';
 import { DetailsScreen } from './screens/DetailsScreen';
+import { ModalScreen } from './screens/ModalScreen'
 
 useScreens();
 
-const RootStack = createStackNavigator(
+const MainStack = createStackNavigator(
   {
     Home: {
       screen: HomeScreen,
@@ -27,13 +28,39 @@ const RootStack = createStackNavigator(
     Details: {
       screen: DetailsScreen,
       navigationOptions: {
-        title: 'Details',
+        // title: 'Details',
       },
     },
   },
   {
     initialRouteName: 'Home',
   },
+)
+
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    MyModal: {
+      screen: ModalScreen,
+    },
+  },
+  {
+    initialRouteName: 'Main',
+    headerMode: 'none',
+    mode: 'modal',
+    transparentCard: true,
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false, // allow me to drag away
+    },
+    // old way of doing transparentCard: true
+    // cardStyle: {
+    //   backgroundColor: 'transparent',
+    //   opacity: 1,
+    // },
+  }
 );
 
 const AppNavigator = createAppContainer(RootStack);

@@ -26,16 +26,26 @@ type Pokemon = {
 
 const PokemonsQuery = gql`
   query pokemons {
-    pokemons(first: 5) {
+    pokemons(first: 9) {
       number
       name
       classification
       image
       types
+      attacks {
+        fast {
+          name
+          type
+          damage
+        }
+      }
       evolutions {
         id
+        number
         name
+        classification
         image
+        types
       }
     }
   }
@@ -52,16 +62,14 @@ const emptyPokemon = {
 // $FlowFixMe
 const getPokemonArray = (pokemons) => {
   // console.log('POKE:', pokemons && pokemons.length)
-  let pokemon = pokemons;
-  if(pokemons && pokemon.length % 2 !== 0)
-  pokemon.push(emptyPokemon)
+  const pokemon = pokemons;
+  if (pokemons && pokemon.length % 2 !== 0) { pokemon.push(emptyPokemon) }
   return pokemons
 }
 
 const keyExtractor = (item, index): string => item.number;
 
- function HomeScreenComponent(props: Props): React$Node {
-
+function HomeScreenComponent(props: Props): React$Node {
   const { loading, error, pokemons } = props.data;
   // console.log('here is my data', props.data.pokemons);
   const checkedPokemon = getPokemonArray(pokemons);
@@ -72,18 +80,16 @@ const keyExtractor = (item, index): string => item.number;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Hello this is the home screen</Text>
+      <Text style={styles.welcome}>CHOOSE YOUR POKEMON</Text>
 
-
-      {loading? <Text>Loading...</Text>
-      : error? <Text>Error :</Text>
-      :
-      <FlatList
-              data={pokemons}
-              renderItem={renderItem}
-              keyExtractor={keyExtractor}
-              numColumns={2}
-            />}
+      {loading ? <Text>Loading...</Text>
+        : error ? <Text>Error :</Text>
+          : <FlatList
+            data={pokemons}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            numColumns={2}
+          />}
     </View>
   );
 }
@@ -94,11 +100,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'coral',
+    backgroundColor: '#595959',
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    fontWeight: '600',
     margin: 10,
+    textAlign: 'center',
+    color: 'white',
   },
 });

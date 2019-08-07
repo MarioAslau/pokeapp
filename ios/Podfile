@@ -44,6 +44,8 @@ target 'RNStarter' do
 
   # Third party libraries
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'RNStarterTests' do
     inherit! :search_paths
   end
