@@ -4,7 +4,6 @@
 
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { graphql, type OperationComponent } from 'react-apollo';
 import { gql } from 'apollo-boost';
 import { PokeCard } from '../components/PokeCard/PokeCard';
@@ -46,6 +45,13 @@ const PokemonsQuery = gql`
         classification
         image
         types
+              attacks {
+        fast {
+          name
+          type
+          damage
+        }
+      }
       }
     }
   }
